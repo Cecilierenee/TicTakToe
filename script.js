@@ -1,120 +1,24 @@
-const square = document.querySelectorAll('.square');
-const restartBtn = document.querySelector('#restart-game');
-const gameStatus = document.querySelector('status');
+//Declaring Variables and selecting classes
+const gameStatus = document.querySelector('.status');
+const restGame = document.querySelector('.reset');
 
-square.addEventListener('click', boxClicked);
+//Game status Messages
+const winnerMessage = () => `${currentPlayer} Won!`;
+const tieMessage = () => "Tie Game!";
+const activePlayer = () => `${currentPlayer}'s Turn!`;
 
-const spaces = [];
-const pick_circle = 'O';
-const pick_x = 'X';
-let currentPlayer = pick_circle;
+let gameActive = true; //stopping point for game
+let currentPlayer = 'X'; //current player
 
-const boxClicked = event => {
-    const id = e.target.id;
-    if (!spaces[id]) {
-        spaces[id] = currentPlayer;
-        e.target.innerText = currentPlayer;
+//The empty string in the gameState array track data cells played and if the game is active or not.
+let gameState = ["", "", "", "", "", "", "", "", "",];
 
-    if (playerWon()) {
-        Text.innerText = `${currentPlayer} Won!`;
-        restart();
-        return;
+//Initializing Game status into html
+gameStatus.innerHTML = activePlayer();
+function handleCellPlayed() {
 
-    if (playerTie()) {
-        return;
-    }
-    currentPlayer = currentPlayer === pick_circle ? pick_x : pick_circle;
-    }
-    }
-};
-
-const playerWon = () => {
-    if (spaces[0] === currentPlayer ) {
-        if (spaces[1] === currentPlayer && spaces[2] === currentPlayer) { gameStatus.innerText = `${currentPlayer} Wins!`;
-        return true;
-        }
-    if (spaces[3] === currentPlayer && spaces[6] === currentPlayer) {
-        gameStatus.innerText =`${currentPlayer} Wins!`;
-        return true;}
-    }
-    if (spaces[4] === currentPlayer && spaces[8] === currentPlayer) {
-        gameStatus.innerText = `${currentPlayer} Wins!`;
-        return true;}
-    }
-    if (spaces[8] === currentPlayer) {
-        if (space[2]=== currentPlayer &&spaces[5] === currentPlayer) {
-            gameStatus.innerText =`${currentPlayer} Wins!`;
-            return true;
-        }
-    if (spaces[6] === currentPlayer && space[7] === currentPlayer) {
-        gameStatus.innerText =`${currentPlayer} Wins!`;
-    }
 }
-if (spaces[4] === currentPlayer) {
-    if (spaces[1] === currentPlayer && spaces[7] === currentPlayer) {
-        gameStatus.innerText =`${currentPlayer} Wins!`;
-        return true;
-    }
-    if(spaces[3] ===currentPlayer && space[5] === currentPlayer) {
-        gameStatus.innerText =`${currentPlayer} Wins!`;
-        return true;
-    }
-    if (space[2] === currentPlayer && spaces[6] === currentPlayer) {
-        gameStatus.innerText =`${currentPlayer} Wins!`;
-        return true;
-    }
-};
-
-const playerTie = () => {
-    let tie = 0;
-    spaces.forEach((space, i) => {
-        if (spaces[i] !== null) tie++;
-    });
-    if (tie === 9) {
-        Text.innerText = `Tie`;
-        restartBtn();
-    }
-};
-
-const restartBtn = () => {
-    setTimeout(() => {
-        spaces.forEach((space. i) => {
-            spaces[i] = null;
-        });
-        square.forEach((square) => {
-            square.innerText ='';
-        });
-
+function handlePlayerChange() {
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Code Graveyard
-
-/*for (let i = 0; i < 9; i++) {
-    let gameBoard = document.createElement('div');
-    document.body.append(gameBoard);
-    }*/
-
-
+}
 
