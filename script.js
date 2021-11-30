@@ -1,10 +1,6 @@
 //Declaring Variables and selecting classes
 const gameStatus = document.querySelector('.status');
 
-//Restart game button and event listener
-
-const restGame = document.querySelector('.reset').addEventListener('click', restartGame);
-
 //Game status Messages
 const winnerMessage = () => `${currentPlayer} Won!`;
 const tieMessage = () => "Tie Game!";
@@ -39,6 +35,7 @@ const winnerConditions = [
     [2,4,6]
 ];
 
+//Declaring conditionals for results and what messages to display in the game status area.
 function gameResults() {
     let roundWon = false;
     for(let i = 0; i <= 7; i++) {
@@ -85,7 +82,7 @@ const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index')
 cellPlayed(clickedCell, clickedCellIndex); gameResults();
 }
 //Setting game back to default settings
-function restartGame() {
+function restGame() {
     gameActive = true;
     currentPlayer = 'X';
     gameState = ["", "", "", "", "", "", "", "", "",];
@@ -95,9 +92,8 @@ function restartGame() {
 }
 
 //Event listener for game cells
+document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', cellPlayed));
 
-document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', cellClicked));
-
-
-
-
+//Restart game button and event listener
+document.querySelector('.reset').addEventListener('click', restGame);
+}
