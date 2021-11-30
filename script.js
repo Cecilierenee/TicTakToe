@@ -1,16 +1,16 @@
 //Declaring Variables and selecting classes
 const gameStatus = document.querySelector('.status');
 
-//Game status Messages
-const winnerMessage = () => `${currentPlayer} Won!`;
-const tieMessage = () => "Tie Game!";
-const activePlayer = () => `${currentPlayer}'s Turn!`;
-
 let gameActive = true; //stopping point for game
 let currentPlayer = 'X'; //current player
 
 //The empty string in the gameState array track data cells played and if the game is active or not.
 let gameState = ["", "", "", "", "", "", "", "", "",];
+
+//Game status Messages
+const winnerMessage = () => `${currentPlayer} Won!`;
+const tieMessage = () => "Tie Game!";
+const activePlayer = () => `${currentPlayer}'s Turn!`;
 
 //Initializing Game status into html
 gameStatus.innerHTML = activePlayer();
@@ -20,19 +20,26 @@ gameStatus.innerHTML = activePlayer();
 //Shows played move and which player turn it is.
 
 function cellPlayed(clickedCell, clickedCellIndex) {
-gameState[clickedCellIndex] = currentPlayer; clickedCell.innerHTML = currentPlayer;
+gameState[clickedCellIndex] = currentPlayer; 
+clickedCell.innerHTML = currentPlayer;
+}
+//Changes active Player and the message in the game status section
+
+function playerChange() {
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    gameStatus.innerHTML = activePlayer();
 }
 
 //Confirming if the game ends in a win or tie. or if the game is still active. Declaring which cell combinations end in a win.
 const winnerConditions = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6]
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
 ];
 
 //Declaring conditionals for results and what messages to display in the game status area.
@@ -43,7 +50,7 @@ function gameResults() {
         let a = gameState[winCondition[0]];
         let b = gameState[winCondition[1]];
         let c = gameState[winCondition[2]];
-        if (a === '' || b === '' || c ==='') {
+        if (a === '' || b === '' || c === '') {
             continue;
         }
         if (a === b && b === c) {
@@ -63,37 +70,34 @@ if (roundTie) {
     gameActive = false;
     return;
 }
-//Changes active Player and the message in the game status section
-function activePlayerChange() {
-currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-gameStatus.innerHTML = currentPlayerTurn()
 
 }
 function cellClicked(clickedCellEvent) {
-const clickedCell = clickedCellEvent.target;
+
+    const clickedCell = clickedCellEvent.target;
 
 //Gets the data-cell-index attribute and returns a string value.
 
-const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index')
+const clickedCellIndex = parseInt(clickedCell.getAttribute('.data-cell-index')
     );
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
         return;
     }
-cellPlayed(clickedCell, clickedCellIndex); gameResults();
+cellClicked(clickedCell, clickedCellIndex); gameResults();
 }
 //Setting game back to default settings
 function restGame() {
     gameActive = true;
     currentPlayer = 'X';
     gameState = ["", "", "", "", "", "", "", "", "",];
-    gameStatus.innerHTML = currentPlayerTurn();
+    gameStatus.innerHTML = activePlayer();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 
 }
 
 //Event listener for game cells
-document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', cellPlayed));
+document.querySelectorAll('div.cell').forEach(cell => cell.addEventListener('click', cellClicked));
 
 //Restart game button and event listener
 document.querySelector('.reset').addEventListener('click', restGame);
-}
+
