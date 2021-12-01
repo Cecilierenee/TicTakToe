@@ -1,0 +1,54 @@
+body {
+    font-family: 'Amatic SC', cursive;
+    background-color: #020122;
+    font-size: 20px;
+    margin: 0;
+}
+section {
+    text-align: center;
+}
+
+h1 {
+    font-size: 80px;
+    text-transform: uppercase;
+    color: #F4442E;
+}
+h2 {
+    text-transform: uppercase;
+    padding: 5px;
+    color:#F2F3AE;
+}
+.reset {
+    color: #F4442E;
+    text-decoration: wavy;
+    cursor: crosshair;
+}
+
+
+#game-container {
+margin: 0 auto;
+width: 600px;
+height: 600px;
+color: #F2F3AE;
+background-color: #edd2823a;
+display: grid;
+grid-template: repeat(3, 1fr)/ repeat(3, 1fr);
+border: 5px #FC9E4F dashed;
+border-radius: 12px;
+text-align: center;
+}
+
+.cell {
+    border-radius: 15px;
+    border: #F4442E solid 5px;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: crosshair;
+    font-size: 50px;
+    text-align: center;
+    margin: 40px;
+}
+
