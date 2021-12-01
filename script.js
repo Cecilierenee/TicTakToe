@@ -1,5 +1,5 @@
 //Declaring Variables and selecting classes
-const gameStatus = document.querySelector('.status');
+const gameStatus = document.querySelector('.status');//reflects where I update the html to show plays turn
 let gameActive = true; //stopping point for game
 let currentPlayer = 'X'; //current player
 //The empty string in the gameState array track data cells played and if the game is active or not.
